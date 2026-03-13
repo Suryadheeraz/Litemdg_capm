@@ -1,0 +1,251 @@
+{
+ "meta": {
+  "creator": "cds-dk 9.6.1"
+ },
+ "$version": "2.0",
+ "definitions": {
+  "C_CLASSIFICATION_SRV": {
+   "kind": "service",
+   "@cds.external": true,
+   "@m.IsDefaultEntityContainer": "true",
+   "@sap.message.scope.supported": "true",
+   "@sap.supported.formats": "atom json xlsx"
+  },
+  "C_CLASSIFICATION_SRV.CharValuation": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.deletable": "false",
+   "@sap.content.version": "1",
+   "@sap.label": "characteristic valuation",
+   "elements": {
+    "OBJEK": {
+     "key": true,
+     "type": "cds.String",
+     "length": 90,
+     "@sap.label": "Object",
+     "@sap.quickinfo": "Key of Object to be Classified",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "KLART": {
+     "key": true,
+     "type": "cds.String",
+     "length": 3,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Class Type",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "CLASS": {
+     "key": true,
+     "type": "cds.String",
+     "length": 18,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Class",
+     "@sap.quickinfo": "Class number",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "ATNAM": {
+     "key": true,
+     "type": "cds.String",
+     "length": 30,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Characteristic Name",
+     "notNull": true
+    },
+    "ATZHL": {
+     "key": true,
+     "type": "cds.String",
+     "length": 3,
+     "@sap.display.format": "NonNegative",
+     "@sap.label": "Counter",
+     "@sap.quickinfo": "Characteristic value counter",
+     "notNull": true
+    },
+    "ATWRT": {
+     "type": "cds.String",
+     "length": 70,
+     "@sap.label": "Characteristic Value"
+    },
+    "ATFLV": {
+     "type": "cds.Double",
+     "@sap.label": "Value from",
+     "@sap.quickinfo": "Internal floating point from"
+    },
+    "ATFLB": {
+     "type": "cds.Double",
+     "@sap.label": "Value to",
+     "@sap.quickinfo": "Internal floating point value to"
+    },
+    "AENNR": {
+     "type": "cds.String",
+     "length": 12,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Change Number"
+    },
+    "LKENZ": {
+     "type": "cds.Boolean",
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Deletion Indicator"
+    },
+    "ATAUT": {
+     "type": "cds.String",
+     "length": 1,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Author",
+     "@sap.quickinfo": "Classification: Author"
+    },
+    "to_Material": {
+     "type": "cds.Association",
+     "target": "C_CLASSIFICATION_SRV.Material",
+     "keys": []
+    },
+    "to_ClassAssignment": {
+     "type": "cds.Association",
+     "target": "C_CLASSIFICATION_SRV.ClassAssignment",
+     "keys": []
+    }
+   }
+  },
+  "C_CLASSIFICATION_SRV.ClassAssignment": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.deletable": "false",
+   "@sap.content.version": "1",
+   "@sap.label": "CLASS ASSIGNMENT VIEW",
+   "elements": {
+    "OBJEK": {
+     "key": true,
+     "type": "cds.String",
+     "length": 90,
+     "@sap.label": "Object",
+     "@sap.quickinfo": "Key of Object to be Classified",
+     "@sap.creatable": "false",
+     "@sap.updatable": "false",
+     "notNull": true
+    },
+    "CLASS": {
+     "key": true,
+     "type": "cds.String",
+     "length": 18,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Class",
+     "@sap.quickinfo": "Class number",
+     "notNull": true
+    },
+    "KLART": {
+     "key": true,
+     "type": "cds.String",
+     "length": 3,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Class Type",
+     "notNull": true
+    },
+    "CLINT": {
+     "type": "cds.String",
+     "length": 10,
+     "@sap.display.format": "NonNegative",
+     "@sap.label": "Internal class no.",
+     "@sap.quickinfo": "Internal Class Number"
+    },
+    "CLSTATUS1": {
+     "type": "cds.String",
+     "length": 1,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Status",
+     "@sap.quickinfo": "Classification status"
+    },
+    "STDCL": {
+     "type": "cds.String",
+     "length": 1,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Standard class",
+     "@sap.quickinfo": "Indicator: Standard Class"
+    },
+    "DATUV": {
+     "type": "cds.Date",
+     "@sap.display.format": "Date",
+     "@sap.label": "Valid From",
+     "@sap.quickinfo": "Valid-From Date"
+    },
+    "AENNR": {
+     "type": "cds.String",
+     "length": 12,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Change Number"
+    },
+    "LKENZ": {
+     "type": "cds.Boolean",
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Deletion Indicator"
+    },
+    "VONDT": {
+     "type": "cds.Date",
+     "@sap.display.format": "Date",
+     "@sap.label": "Valid From",
+     "@sap.quickinfo": "Valid-From Date"
+    },
+    "BISDT": {
+     "type": "cds.Date",
+     "@sap.display.format": "Date",
+     "@sap.label": "Valid to",
+     "@sap.quickinfo": "Valid-to date"
+    },
+    "KLAGR": {
+     "type": "cds.String",
+     "length": 10,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Class group",
+     "@sap.quickinfo": "Class Group"
+    },
+    "to_CharacteristicValuation": {
+     "type": "cds.Composition",
+     "target": "C_CLASSIFICATION_SRV.CharValuation",
+     "cardinality": {
+      "max": "*"
+     },
+     "keys": []
+    },
+    "to_Material": {
+     "type": "cds.Association",
+     "target": "C_CLASSIFICATION_SRV.Material",
+     "keys": []
+    }
+   }
+  },
+  "C_CLASSIFICATION_SRV.Material": {
+   "kind": "entity",
+   "@cds.external": true,
+   "@cds.persistence.skip": true,
+   "@sap.updatable": "false",
+   "@sap.deletable": "false",
+   "@sap.content.version": "1",
+   "@sap.label": "MATERIAL ROOT ENTITY",
+   "elements": {
+    "MATNR": {
+     "key": true,
+     "type": "cds.String",
+     "length": 18,
+     "@sap.display.format": "UpperCase",
+     "@sap.label": "Material",
+     "@sap.quickinfo": "Material Number",
+     "notNull": true
+    },
+    "to_ClassAssignment": {
+     "type": "cds.Composition",
+     "target": "C_CLASSIFICATION_SRV.ClassAssignment",
+     "cardinality": {
+      "max": "*"
+     },
+     "keys": []
+    }
+   }
+  }
+ }
+}

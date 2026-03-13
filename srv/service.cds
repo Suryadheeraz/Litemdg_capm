@@ -1,0 +1,268 @@
+using { mdg as db } from '../db/schema';
+using { mdg.commons as common } from '../db/commons';
+using {ZSRV_LITEMDG_VALUEHELP_API_SRV as API} from './external/ZSRV_LITEMDG_VALUEHELP_API_SRV';
+using {mdg.anomalyschema as anom} from '../db/anomalyschema';
+using {mdg.recordschema as rec} from '../db/recordschema';
+
+service litemdg {    
+    @odata.draft.enabled
+    //@Common.DraftRoot.NewAction: 'litemdg.createDraft'
+    entity Mara as projection on db.Mara_staging actions{
+         action calculation();
+         action createDraft(in: many $self) returns Mara; 
+    }; 
+    entity mara_dummy as projection on db.Dummy.Mara_staging_dummy;
+    entity Plant_dummy as projection on db.Dummy.Plant_dummy;
+    entity Storage_dummy as projection on db.Dummy.Storage_Location_dummy;
+    entity Description_dummy as projection on db.Dummy.Description_dummy;
+
+    entity RulesHeader as projection on db.Rules.RuleHeader;
+    entity RuleLineItems as projection on db.Rules.RuleLineItems;
+    @odata.singleton
+    entity ExcelUpload as projection on db.ExcelUpload;
+    entity plant as projection on db.Plant; 
+    entity Description as projection on db.Description;
+    entity Change_Request as projection on db.REQUEST_NUMBER.Change_Request;
+    entity Storage_Location as projection on db.Storage_Location;
+    entity Sales_Delivery as projection on db.Sales_Delivery;
+    entity Warehouse as projection on db.Warehouse;
+    entity WorkScheduling as projection on db.WorkScheduling;
+    entity QualityManagement as projection on db.QualityManagement;
+    entity Storage_type as projection on db.Storage_type;
+    entity Sales_tax as projection on db.Sales_tax;
+    entity Alternate_UOM as projection on db.Alternate_UOM;
+    entity Sales_dummy as projection on db.Dummy.Sales_Delivery_dummy;
+    entity Valuation as projection on db.Valuation;
+    entity Valuation_dummy as projection on db.Dummy.Valuation_dummy;
+    entity Warehouse_dummy as projection on db.Dummy.Warehouse_dummy;
+    entity Storage_type_dummy as projection on db.Dummy.Storage_type_dummy;
+    entity Sales_tax_dummy as projection on db.Dummy.Sales_tax_dummy;
+    entity Alternate_UOM_dummy as projection on db.Dummy.Alternate_UOM_dummy;
+    entity ClassAssignment_dummy as projection on db.Dummy.ClassAssignment_dummy;
+    entity CharacteristicValuation_dummy as projection on db.Dummy.CharacteristicValuation_dummy;
+    entity Change_Request_Details as projection on db.REQUEST_NUMBER.Change_Request_details;
+    
+    entity ReplicationReport as projection on db.ReplicationReport;
+    @odata.draft.enabled
+    entity Fixed_Values as projection on db.Value_help.Fixed_Values;
+    entity Value_List as projection on db.Value_help.Value_List;
+    entity Field_Mapping as projection on db.Value_help.Field_Mapping;
+    @odata.draft.enabled
+    entity ModelHeaderSet as projection on db.Field_Properties.ModelHeader;
+    entity EntityItems as projection on db.Field_Properties.EntityItems;
+    entity FieldAtribute as projection on db.Field_Properties.FieldAtribute;
+
+    entity ChangeLog as projection on db.Change_tracking.ChangeLog;
+   
+
+    entity Value_ListAPI as projection on API.ValueHelpSet;
+    @odata.draft.enabled
+    entity ApproverMatrix as projection on db.ApproverMatrix;
+    entity ApproverList as projection on db.ApproverList;
+
+    entity anomalydata as projection on anom.anomalydata;
+
+    entity Allrecords as projection on rec.records;
+    entity Bestrecords as projection on rec.bestrecords;
+
+    entity Goldenrecords as projection on rec.goldenrecords;
+
+    entity ValidationReportHeader as projection on db.ValidationReport.ValidationReportHeader;
+
+    action Bestrec() returns array of Bestrecords;
+
+    action Goldenrec() returns array of Goldenrecords;
+
+    action   ProcessExcel(ip_mara : many common.t_Mara,
+                        ip_plant : many common.t_plant,
+                        ip_storage : many common.t_Storage_Location,
+                        ip_description : many common.t_Description,
+                        ip_warehouse : many common.t_Warehouse,
+                        ip_storage_type : many common.t_Storage_type,
+                        ip_alternate_uom : many common.t_Alternate_UOM,
+                        ip_sales_delivery : many common.t_Sales_Delivery,
+                        ip_valuation : many common.t_Valuation,
+                        ip_sales_tax : many common.t_Sales_tax,
+                        ip_type : String,
+                        ip_Entity : String,
+                        ip_QualityManagement :many common.ty_QualityMng,
+                     ip_Worksheduling :many common.ty_WrkSchedule,
+                    ip_ClassAssignment: many common.ty_ClassAssign,
+                        ip_CharacteristicValuation : many common.ty_CharactValuation)               returns String;
+    action Uplod_to_Dummy(ip_mara: many common.t_Mara,ip_plant: many common.t_plant,ip_storage:many common.t_Storage_Location,ip_description:many common.t_Description) returns String;
+
+  action   Validate(ip_mara : many common.t_Mara,
+                    ip_plant : many common.t_plant,
+                    ip_storage : many common.t_Storage_Location,
+                    ip_description : many common.t_Description,
+                    ip_warehouse : many common.t_Warehouse,
+                    ip_storage_type : many common.t_Storage_type,
+                    ip_alternate_uom : many common.t_Alternate_UOM,
+                    ip_sales_delivery : many common.t_Sales_Delivery,
+                    ip_valuation : many common.t_Valuation,
+                    ip_sales_tax : many common.t_Sales_tax,
+                    ip_type : String,
+                    ip_QualityManagement :many common.ty_QualityMng,
+                     ip_Worksheduling :many common.ty_WrkSchedule,
+                    ip_Entity : String, ip_ClassAssignment: many common.ty_ClassAssign,
+                        ip_CharacteristicValuation : many common.ty_CharactValuation)                                                                                                                                          returns many common.ValidationError;
+
+  action   Trigger_workflow(ip_mara : many common.t_Mara,
+                            ip_plant : many common.t_plant,
+                            ip_storage : many common.t_Storage_Location,
+                            ip_description : many common.t_Description,
+                            ip_warehouse : many common.t_Warehouse,
+                            ip_storage_type : many common.t_Storage_type,
+                            ip_alternate_uom : many common.t_Alternate_UOM,
+                            ip_sales_delivery : many common.t_Sales_Delivery,
+                            ip_valuation : many common.t_Valuation,
+                            ip_sales_tax : many common.t_Sales_tax,
+                            ip_type : String,
+                            ip_Entity : String,
+                            IsInitialLoad : Boolean)                                                                                                                                  returns Integer;
+    action SaveToDB(ip_req_no: Integer,ip_type: String,ip_Entity: String,IsInitialLoad : Boolean) returns String;
+    action FieldStatus(ip_type: String) returns many common.FieldStatus;
+    action InsertMaterial(ip_MaterialID:String,ip_NewMaterial:String) returns String;
+    action CopyPlant(ip_RefrencePlant:String, ip_NewPlant:String,ip_Material:String) returns String;
+    function Rule_validation(ip_ID:String) returns many String;
+    action Mass_Rule_validation(ip_ID:many String)  returns many common.ValidationError;
+     action ValidationReport (ip_MTART : String) returns many common.ValidationError;
+  
+     // Action to get count of open change requests for current user
+    function getOpenChangeRequestCount() returns common.changeRequestCount; //: Anupam
+    function getInboxPendingRequestcount() returns common.changeRequestCount;
+
+    action get_ValueList(Key:String) returns String;
+    action replicateToS4Hana(ipJobID: String, ipSystem : String) returns array of common.tyReplicationResult;
+    // action replicateToS4Hana(ipMatnrs:many String) returns array of common.tyReplicationResult;
+    action triggerMaterialJob(ipMatnrs:many String, ipMode : String, ipNotes : String, ipSystem : String) returns array of common.tyReplicationResult;
+  // action replicateToS4Hana() returns array of common.tyReplicationResult;
+  //entity Exposed for Dashboard
+  entity RequestStats           as
+    select from Change_Request {
+      key REQUEST_NUMBER,
+          REQUEST_TYPE,
+          Overall_status,
+          Requested_Date,
+          Aprroved_date,
+          Requested_By,
+          count( * ) as requestCount : Integer
+    }
+    group by
+      REQUEST_NUMBER,
+      REQUEST_TYPE,
+      Overall_status,
+      Requested_Date,
+      Aprroved_date,
+      Requested_By;
+
+  // entity ObjectStats @(cds.redirection.target: 'Change_Request_Details') as  select from Change_Request_Details
+  //     {
+  //       key Change,
+  //       key Object_ID,
+  //       Material_type,
+  //       Overall_status,
+  //       count(*) as ObjectStatsCount : Integer
+  //     }
+  //     group by
+  //       Change,
+  //       Object_ID,
+  //       Material_type,
+  //       Overall_status;
+  // other fields
+
+  @odata.draft.enabled
+    entity SectionApproverMatrix as projection on db.SectionApproverMatrix;
+
+   action updateQualityMgmt (
+      ip_qualityMng : many common.ty_QualityMng 
+  ) returns Boolean;
+
+  action updateWorkSchedule (
+      ip_wrkSchedule : many common.ty_WrkSchedule
+  ) returns Boolean;
+
+  entity ObjectStats            as
+    select from Change_Request_Details {
+      key Change.REQUEST_NUMBER,
+      key Object_ID,
+          Material_type,
+          Overall_status,
+          count( * ) as ObjectStatsCount : Integer
+    }
+    group by
+      Change.REQUEST_NUMBER,
+      Object_ID,
+      Material_type,
+      Overall_status;
+
+  entity MaraStagType           as
+    select from Mara {
+      key ID,
+      key MATNR,
+          MTART,
+          count( * ) as maraTypeCount : Integer
+    }
+    group by
+      ID,
+      MATNR,
+      MTART;
+
+
+  entity MaraType               as
+    select from Mara {
+
+      MATNR,
+      MTART,
+      count( * ) as maraTypeCount : Integer
+    }
+    group by
+
+      MATNR,
+      MTART;
+}
+
+
+annotate litemdg.MaraType with {
+  @Analytics.Dimension: true
+  MTART;
+
+  @Analytics.Measure  : true
+  @Aggregation.default: #COUNTDISTINCT
+  @Core.Computed
+  maraTypeCount @title: 'Counts';
+
+};
+
+annotate litemdg.MaraStagType with {
+  @Analytics.Dimension: true
+  MTART;
+
+  @Analytics.Measure  : true
+  @Aggregation.default: #COUNTDISTINCT
+  @Core.Computed
+  maraTypeCount @title: 'Counts';
+
+};
+
+annotate litemdg.RequestStats with {
+  @Analytics.Dimension: true
+  REQUEST_TYPE;
+
+  @Analytics.Measure  : true
+  @Aggregation.default: #COUNTDISTINCT
+  @Core.Computed
+  requestCount @title: 'Counts';
+
+};
+
+annotate litemdg.ObjectStats with {
+  @Analytics.Dimension: true
+  Material_type;
+
+  @Analytics.Measure  : true
+  @Aggregation.default: #COUNTDISTINCT
+  @Core.Computed
+  ObjectStatsCount @title: 'Counts';
+
+};

@@ -1,0 +1,73 @@
+{
+  "xsappname": "LiteMDG",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.JOBSCHEDULER",
+      "description": "Job Scheduler Scope",
+      "grant-as-authority-to-apps": ["$XSSERVICENAME(job_scheduling_inst)"]
+    },
+     {
+      "name": "$XSAPPNAME.mm_single_display",
+      "description": "Display Access role"
+    },
+    {
+      "name": "$XSAPPNAME.mm_single_Edit",
+      "description": "Edit Access role"
+    },
+    {
+      "name": "$XSAPPNAME.mm_QualityRole",
+      "description": "Material Master Quality role"
+    },
+    {
+      "name": "$XSAPPNAME.mm_WorkSchedulingRole",
+      "description": "Material Master WorkScheduling role"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "litemdg_mm_single_display",
+      "description": "Display Access role of Single Material Master",
+      "scope-references": [
+        "$XSAPPNAME.mm_single_display"
+      ]
+    },
+    {
+      "name": "litemdg_mm_single_Edit",
+      "description": "Edit Access role of Single Material Master",
+      "scope-references": [
+        "$XSAPPNAME.mm_single_Edit"
+      ]
+    },
+    {
+      "name": "litemdg_mm_QualityRole",
+      "description": "Material Master Quality role",
+      "scope-references": [
+       "$XSAPPNAME.mm_QualityRole"
+      ]
+    },
+    {
+      "name": "litemdg_mm_WorkSchedulingRole",
+      "description": "Material Master WorkScheduling role",
+      "scope-references": [
+        "$XSAPPNAME.mm_WorkSchedulingRole"
+      ]
+    }
+  ],
+  "role-collections": [
+        {
+        "name": "WorkSchedulingRole",
+        "description": "Work Scheduling Role Collection",
+        "role-template-references": [
+           "$XSAPPNAME.litemdg_mm_WorkSchedulingRole"
+            ]
+        },
+        {
+        "name": "QualityManagementRole",
+        "description": "Quality Management Role Collection",
+        "role-template-references": [
+           "$XSAPPNAME.litemdg_mm_QualityRole"
+            ]
+        }
+    ]
+}

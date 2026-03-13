@@ -1,0 +1,213 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://bmhe1154319.apac.bosch.com:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value">
+<edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://bmhe1154319.apac.bosch.com:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://bmhe1154319.apac.bosch.com:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value">
+<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://bmhe1154319.apac.bosch.com:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://bmhe1154319.apac.bosch.com:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://bmhe1154319.apac.bosch.com:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://bmhe1154319.apac.bosch.com:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='')/$value">
+<edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://bmhe1154319.apac.bosch.com:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://bmhe1154319.apac.bosch.com:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value">
+<edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+</edmx:Reference>
+<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="https://bmhe1154319.apac.bosch.com:44300/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value">
+<edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+</edmx:Reference>
+<edmx:DataServices m:DataServiceVersion="2.0">
+<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="cds_zsd_c_material" xml:lang="en" sap:schema-version="1">
+<Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+<EntityType Name="CharValuationType" sap:label="characteristic valuation" sap:content-version="1">
+<Key>
+<PropertyRef Name="OBJEK"/>
+<PropertyRef Name="KLART"/>
+<PropertyRef Name="CLASS"/>
+<PropertyRef Name="ATNAM"/>
+<PropertyRef Name="ATZHL"/>
+</Key>
+<Property Name="OBJEK" Type="Edm.String" Nullable="false" MaxLength="90" sap:label="Object" sap:quickinfo="Key of Object to be Classified" sap:creatable="false" sap:updatable="false"/>
+<Property Name="KLART" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Class Type" sap:creatable="false" sap:updatable="false"/>
+<Property Name="CLASS" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Class" sap:quickinfo="Class number" sap:creatable="false" sap:updatable="false"/>
+<Property Name="ATNAM" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:label="Characteristic Name"/>
+<Property Name="ATZHL" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="NonNegative" sap:label="Counter" sap:quickinfo="Characteristic value counter"/>
+<Property Name="ATWRT" Type="Edm.String" MaxLength="70" sap:label="Characteristic Value"/>
+<Property Name="ATFLV" Type="Edm.Double" sap:label="Value from" sap:quickinfo="Internal floating point from"/>
+<Property Name="ATFLB" Type="Edm.Double" sap:label="Value to" sap:quickinfo="Internal floating point value to"/>
+<Property Name="AENNR" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Change Number"/>
+<Property Name="LKENZ" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Deletion Indicator"/>
+<Property Name="ATAUT" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Author" sap:quickinfo="Classification: Author"/>
+<NavigationProperty Name="to_Material" Relationship="cds_zsd_c_material.assoc_BB3485315B63D84644450CA1496E3823" FromRole="FromRole_assoc_BB3485315B63D84644450CA1496E3823" ToRole="ToRole_assoc_BB3485315B63D84644450CA1496E3823"/>
+<NavigationProperty Name="to_ClassAssignment" Relationship="cds_zsd_c_material.assoc_3C3C387AB85203F3DBA5258C38E3E803" FromRole="ToRole_assoc_3C3C387AB85203F3DBA5258C38E3E803" ToRole="FromRole_assoc_3C3C387AB85203F3DBA5258C38E3E803"/>
+</EntityType>
+<EntityType Name="ClassAssignmentType" sap:label="CLASS ASSIGNMENT VIEW" sap:content-version="1">
+<Key>
+<PropertyRef Name="OBJEK"/>
+<PropertyRef Name="CLASS"/>
+<PropertyRef Name="KLART"/>
+</Key>
+<Property Name="OBJEK" Type="Edm.String" Nullable="false" MaxLength="90" sap:label="Object" sap:quickinfo="Key of Object to be Classified" sap:creatable="false" sap:updatable="false"/>
+<Property Name="CLASS" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Class" sap:quickinfo="Class number"/>
+<Property Name="KLART" Type="Edm.String" Nullable="false" MaxLength="3" sap:display-format="UpperCase" sap:label="Class Type"/>
+<Property Name="CLINT" Type="Edm.String" MaxLength="10" sap:display-format="NonNegative" sap:label="Internal class no." sap:quickinfo="Internal Class Number"/>
+<Property Name="CLSTATUS1" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Status" sap:quickinfo="Classification status"/>
+<Property Name="STDCL" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Standard class" sap:quickinfo="Indicator: Standard Class"/>
+<Property Name="DATUV" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Valid From" sap:quickinfo="Valid-From Date"/>
+<Property Name="AENNR" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Change Number"/>
+<Property Name="LKENZ" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Deletion Indicator"/>
+<Property Name="VONDT" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Valid From" sap:quickinfo="Valid-From Date"/>
+<Property Name="BISDT" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Valid to" sap:quickinfo="Valid-to date"/>
+<Property Name="KLAGR" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Class group" sap:quickinfo="Class Group"/>
+<NavigationProperty Name="to_CharacteristicValuation" Relationship="cds_zsd_c_material.assoc_3C3C387AB85203F3DBA5258C38E3E803" FromRole="FromRole_assoc_3C3C387AB85203F3DBA5258C38E3E803" ToRole="ToRole_assoc_3C3C387AB85203F3DBA5258C38E3E803"/>
+<NavigationProperty Name="to_Material" Relationship="cds_zsd_c_material.assoc_EEAB583D2EF34747BEDEE706CD406724" FromRole="ToRole_assoc_EEAB583D2EF34747BEDEE706CD406724" ToRole="FromRole_assoc_EEAB583D2EF34747BEDEE706CD406724"/>
+</EntityType>
+<EntityType Name="MaterialType" sap:label="MATERIAL ROOT ENTITY" sap:content-version="1">
+<Key>
+<PropertyRef Name="MATNR"/>
+</Key>
+<Property Name="MATNR" Type="Edm.String" Nullable="false" MaxLength="18" sap:display-format="UpperCase" sap:label="Material" sap:quickinfo="Material Number"/>
+<NavigationProperty Name="to_ClassAssignment" Relationship="cds_zsd_c_material.assoc_EEAB583D2EF34747BEDEE706CD406724" FromRole="FromRole_assoc_EEAB583D2EF34747BEDEE706CD406724" ToRole="ToRole_assoc_EEAB583D2EF34747BEDEE706CD406724"/>
+</EntityType>
+<Association Name="assoc_3C3C387AB85203F3DBA5258C38E3E803" sap:content-version="1">
+<End Type="cds_zsd_c_material.ClassAssignmentType" Multiplicity="1" Role="FromRole_assoc_3C3C387AB85203F3DBA5258C38E3E803">
+<OnDelete Action="Cascade"/>
+</End>
+<End Type="cds_zsd_c_material.CharValuationType" Multiplicity="*" Role="ToRole_assoc_3C3C387AB85203F3DBA5258C38E3E803"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_assoc_3C3C387AB85203F3DBA5258C38E3E803">
+<PropertyRef Name="CLASS"/>
+<PropertyRef Name="KLART"/>
+<PropertyRef Name="OBJEK"/>
+</Principal>
+<Dependent Role="ToRole_assoc_3C3C387AB85203F3DBA5258C38E3E803">
+<PropertyRef Name="CLASS"/>
+<PropertyRef Name="KLART"/>
+<PropertyRef Name="OBJEK"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="assoc_EEAB583D2EF34747BEDEE706CD406724" sap:content-version="1">
+<End Type="cds_zsd_c_material.MaterialType" Multiplicity="1" Role="FromRole_assoc_EEAB583D2EF34747BEDEE706CD406724">
+<OnDelete Action="Cascade"/>
+</End>
+<End Type="cds_zsd_c_material.ClassAssignmentType" Multiplicity="*" Role="ToRole_assoc_EEAB583D2EF34747BEDEE706CD406724"/>
+<ReferentialConstraint>
+<Principal Role="FromRole_assoc_EEAB583D2EF34747BEDEE706CD406724">
+<PropertyRef Name="MATNR"/>
+</Principal>
+<Dependent Role="ToRole_assoc_EEAB583D2EF34747BEDEE706CD406724">
+<PropertyRef Name="OBJEK"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<Association Name="assoc_BB3485315B63D84644450CA1496E3823" sap:content-version="1">
+<End Type="cds_zsd_c_material.CharValuationType" Multiplicity="1" Role="FromRole_assoc_BB3485315B63D84644450CA1496E3823"/>
+<End Type="cds_zsd_c_material.MaterialType" Multiplicity="1" Role="ToRole_assoc_BB3485315B63D84644450CA1496E3823"/>
+<ReferentialConstraint>
+<Principal Role="ToRole_assoc_BB3485315B63D84644450CA1496E3823">
+<PropertyRef Name="MATNR"/>
+</Principal>
+<Dependent Role="FromRole_assoc_BB3485315B63D84644450CA1496E3823">
+<PropertyRef Name="OBJEK"/>
+</Dependent>
+</ReferentialConstraint>
+</Association>
+<EntityContainer Name="cds_zsd_c_material_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+<EntitySet Name="CharValuation" EntityType="cds_zsd_c_material.CharValuationType" sap:deletable="false" sap:content-version="1"/>
+<EntitySet Name="ClassAssignment" EntityType="cds_zsd_c_material.ClassAssignmentType" sap:deletable="false" sap:content-version="1"/>
+<EntitySet Name="Material" EntityType="cds_zsd_c_material.MaterialType" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+<AssociationSet Name="assoc_3C3C387AB85203F3DBA5258C38E3E803" Association="cds_zsd_c_material.assoc_3C3C387AB85203F3DBA5258C38E3E803" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="ClassAssignment" Role="FromRole_assoc_3C3C387AB85203F3DBA5258C38E3E803"/>
+<End EntitySet="CharValuation" Role="ToRole_assoc_3C3C387AB85203F3DBA5258C38E3E803"/>
+</AssociationSet>
+<AssociationSet Name="assoc_BB3485315B63D84644450CA1496E3823" Association="cds_zsd_c_material.assoc_BB3485315B63D84644450CA1496E3823" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="CharValuation" Role="FromRole_assoc_BB3485315B63D84644450CA1496E3823"/>
+<End EntitySet="Material" Role="ToRole_assoc_BB3485315B63D84644450CA1496E3823"/>
+</AssociationSet>
+<AssociationSet Name="assoc_EEAB583D2EF34747BEDEE706CD406724" Association="cds_zsd_c_material.assoc_EEAB583D2EF34747BEDEE706CD406724" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+<End EntitySet="Material" Role="FromRole_assoc_EEAB583D2EF34747BEDEE706CD406724"/>
+<End EntitySet="ClassAssignment" Role="ToRole_assoc_EEAB583D2EF34747BEDEE706CD406724"/>
+</AssociationSet>
+</EntityContainer>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_zsd_c_material.cds_zsd_c_material_Entities">
+<Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_zsd_c_material.ClassAssignmentType/to_CharacteristicValuation">
+<Annotation Term="Common.Composition"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_zsd_c_material.MaterialType/to_ClassAssignment">
+<Annotation Term="Common.Composition"/>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_zsd_c_material.cds_zsd_c_material_Entities/ClassAssignment">
+<Annotation Term="Capabilities.NavigationRestrictions">
+<Record>
+<PropertyValue Property="RestrictedProperties">
+<Collection>
+<Record>
+<PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_CharacteristicValuation"/>
+<PropertyValue Property="InsertRestrictions">
+<Record>
+<PropertyValue Property="Insertable" Bool="true"/>
+</Record>
+</PropertyValue>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+<Annotation Term="SAP__core.OptimisticConcurrency">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_zsd_c_material.cds_zsd_c_material_Entities/Material">
+<Annotation Term="Capabilities.NavigationRestrictions">
+<Record>
+<PropertyValue Property="RestrictedProperties">
+<Collection>
+<Record>
+<PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_ClassAssignment"/>
+<PropertyValue Property="InsertRestrictions">
+<Record>
+<PropertyValue Property="Insertable" Bool="true"/>
+</Record>
+</PropertyValue>
+</Record>
+</Collection>
+</PropertyValue>
+</Record>
+</Annotation>
+<Annotation Term="SAP__core.OptimisticConcurrency">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_zsd_c_material.cds_zsd_c_material_Entities/CharValuation">
+<Annotation Term="SAP__core.OptimisticConcurrency">
+<Collection/>
+</Annotation>
+</Annotations>
+<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_zsd_c_material.cds_zsd_c_material_Entities">
+<Annotation Term="Org.OData.Capabilities.V1.BatchSupport">
+<Record Type="Org.OData.Capabilities.V1.BatchSupportType">
+<PropertyValue Property="ReferencesAcrossChangeSetsSupported" Bool="true"/>
+</Record>
+</Annotation>
+</Annotations>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="https://bmhe1154319.apac.bosch.com:44300/sap/opu/odata/sap/ZSB_C_MATERIAL/$metadata"/>
+<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="https://bmhe1154319.apac.bosch.com:44300/sap/opu/odata/sap/ZSB_C_MATERIAL/$metadata"/>
+</Schema>
+</edmx:DataServices>
+</edmx:Edmx>
